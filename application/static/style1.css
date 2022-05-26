@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+.navbar-brand{
+    color: white;
+    font-family: 'Segoe UI';
+    letter-spacing: 0.1em;
+    margin-left: 16px;
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+.navbar-brand:hover{
+    color: white;
+}
+.navbar-nav a{
+    color: black;
+    font-family: 'Segoe UI';
+}
+.nav{
+    margin: 16px 0 16px 0;
+}
+.dat-chart{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.gabung{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+form{
+    width: 100%;
+    margin: 32px 0 0 48px;
+}

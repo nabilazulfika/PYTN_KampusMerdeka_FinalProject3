@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{url_for('static', filename = 'style1.css')}}"
+    type="text/css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <title>Modelling Heart Failure</title>
+    
+</head>
+<body>
+    
+  <nav class="navbar navbar-expand-lg" style="background-color: black;">
+    <div class="container-fluid">
+      <a class="navbar-brand"><b>Heart Failure</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/home" style="color: whitesmoke;">Home</a>
+          <a class="nav-link" href="/data" style="color: whitesmoke;">Data</a>
+          <a class="nav-link active" aria-current="page" href="/model" style="color: tomato;">Model</a>
+          <a class="nav-link" href="/pred" style="color: whitesmoke;">Predict</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    {% block content %}
+    <div class="dat-chart">
+      <div style="width: 60%; text-align: justify; margin: 16px 8px 0 32px;">
+        <h4>Pemodelan Data: Ensemble</h4>
+        <p>&nbsp &nbsp &nbsp Proses di mana beberapa model beragam dibuat untuk memprediksi hasil, baik dengan menggunakan banyak algoritma pemodelan yang berbeda atau menggunakan set data pelatihan yang berbeda. Model ensemble kemudian menggabungkan prediksi setiap model dasar dan menghasilkan prediksi akhir sekali untuk data yang tidak terlihat. Pada pemodelan dataset Heart Failure ini akan ada 6 algoritma yang diperbandingkan, yaitu Logistic Regression, Support Vectore Machine(SVM), Decision Tree, Naive Bayes, Random Forest, dan K-Nearest Neighbor(KNN).</p>
+        <h4>Skor Akurasi:</h4>
+        <ul>
+          <li>Logistic Regression: {{score_lr}}</li>
+          <li>Support Vectore Machine (SVM): {{score_svm}}</li>
+          <li>Decision Tree: {{score_tree}}</li>
+          <li>Naive Bayes: {{score_nb}}</li>
+          <li><b>Random Forest: {{score_rf}}</b></li>
+          <li>K-Nearest Neighbor (KNN): {{score_knn}}</li>
+        </ul>
+        <p style="margin-top: 16px;">Random Forest adalah algoritma dengan nilai akurasi terbaik!</p>
+      </div>
+      <div style="width: 100%; margin: 16px 32px 0 0;">
+        <h5 style="margin: 0 0 16px 48px;">Pilih Algoritma:</h5>
+        <select class="form-select" id="model" aria-label="Default select example" style="width: 85%;margin-left: 48px;">
+          <option value="rf">Random Forest</option>
+          <option value="logistic">Logistic Regression</option>
+          <option value="svm">SVM</option>
+          <option value="tree">Decision Tree</option>
+          <option value="nb">Naive Bayes</option>
+          <option value="knn">KNN</option>
+        </select>
+        <div id="chart1" class="chart1" style="margin: 0 0 0 16px;"></div>
+        <div class="gabung">
+          <p style="padding: 20px; margin: 0 0 0 48px; background-color: black; color: white; border-radius: 48px;">MAPE: <br> {{MAPE}}</p>
+          <p style="padding: 20px; margin: 0 0 0 0; background-color: black; color: white; border-radius: 48px;">MAE: <br> {{MAE}}</p>
+          <p style="padding: 20px; margin: 0 48px 0 0; background-color: black; color:white; border-radius: 48px;">RMSE: <br> {{RMSE}}</p>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plots_2.js') }}"></script>
+
+</body>
+<script>
+  a = {{ plot | safe}};
+  Plotly.newPlot('chart1', a, {});
+</script>
+</html>

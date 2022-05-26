@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{url_for('static', filename = 'style1.css')}}"
+    type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Data Heart Failure</title>
+    
+</head>
+<body>
+    
+  <nav class="navbar navbar-expand-lg" style="background-color: black;">
+    <div class="container-fluid">
+      <a class="navbar-brand"><b>Heart Failure</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/home" style="color: whitesmoke;">Home</a>
+          <a class="nav-link active" aria-current="page" href="/data" style="color: tomato;">Data</a>
+          <a class="nav-link" href="/model" style="color: whitesmoke;">Model</a>
+          <a class="nav-link" href="/pred" style="color: whitesmoke;">Predict</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xm-12">
+            <div class="ml-auto mr-auto">
+              {% block content %}
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link active" href="/data" style="color: black;">Distribusi</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/fitur_im" style="color: black; border-radius: 30px; background-color: whitesmoke;">Fitur Penting</a>
+                </li>
+              </ul>
+              <div class="dat-chart">
+                <div style="width: 100%; text-align: justify;margin: 0 0 0 16px;">
+                    <h6>
+                        Ejection Fraction (EF)
+                    </h6>
+                    <p><b>1. Ejection Fraction 55% hingga 70%:</b></p>
+                    <ul>
+                        <li>Kemampuan Memompa Jantung: Normal</li>
+                        <li>Tingkat Gagal Jantung/Efeknya pada Pemompaan: Fungsi jantung mungkin normal atau Anda mungkin mengalami gagal jantung dengan EF (HF-pEF) yang dipertahankan.</li>
+                    </ul>
+                    <p><b>2. Ejection Fraction 40% hingga 54%:</b></p>
+                    <ul>
+                        <li>Kemampuan Memompa Jantung: Sedikit di bawah normal</li>
+                        <li>Tingkat Gagal Jantung / Efek pada Pemompaan: Lebih sedikit darah yang tersedia sehingga lebih sedikit darah yang dikeluarkan dari ventrikel. Ada jumlah yang lebih rendah dari normal darah kaya oksigen yang tersedia untuk seluruh tubuh. Anda mungkin tidak memiliki gejala.</li>
+                    </ul>
+                    <p><b>2. Ejection Fraction 35% hingga 39%:</b></p>
+                    <ul>
+                        <li>Kemampuan Memompa Jantung: Cukup di bawah normal</li>
+                        <li>Tingkat Gagal Jantung/Efek pada Pemompaan: Gagal jantung ringan dengan penurunan EF (HF-rEF).</li>
+                    </ul>
+                    <p><b>2. Ejection Fraction kurang dari 35%:</b></p>
+                    <ul>
+                        <li>Kemampuan Memompa Jantung: Sangat di bawah normal</li>
+                        <li>Tingkat Gagal Jantung/Efek pada Pemompaan: HF-rEF sedang hingga berat.</li>
+                    </ul>
+                </div>
+                <div style="width: 100%; text-align: justify;margin: 0 16px 0 64px;">
+                    <h6>
+                        Serum Creatinine
+                    </h6>
+                    <p>Normal (mg/dL):</p>
+                    <ul>
+                        <li>Pria: 0.7 - 1.3</li>
+                        <li>Wanita: 0.6 - 1.2</li>
+                    </ul>
+                    <br>
+                    <h6>
+                        Serum Sodium
+                    </h6>
+                    <p>Normal (mEq/L): 135 hingga 145</p>
+                    <br>
+                    <h6>
+                        Creatinine Phosphokinase
+                    </h6>
+                    <p>Normal (IU/L):</p>
+                    <ul>
+                        <li>Pria: 55 - 170</li>
+                        <li>Wanita: 30 - 135</li>
+                    </ul>
+                    <br>
+                    <h6>
+                        Platelets
+                    </h6>
+                    <p>Normal (mcL): 150.000 hingga 450.000</p>
+                </div>
+              </div>
+              <div class="dat-chart">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <a href="/fitur_im"><span class="carousel-control-prev-icon" aria-hidden="true"style="background-color: black;"></span>
+                    <span class="visually-hidden">Previous</span></a>
+                </button>
+              </div>
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plots.js') }}"></script>
+
+</body>
+<script>
+  b = {{ graph_fs | safe}};
+  Plotly.newPlot('chart2', b, {});
+</script>
+</html>

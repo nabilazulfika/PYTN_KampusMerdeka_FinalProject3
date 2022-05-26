@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{url_for('static', filename = 'style1.css')}}"
+    type="text/css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function cb(selection){
+        $.getJSON({
+          url: "/callback", data: { 'data':selection}, success: function (result){
+            Plotly.newPlot('chart1', result, {});;
+          }
+        })
+      }
+    </script>
+    
+    <title>Heart Failure</title>
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg" style="background-color: black;">
+      <div class="container-fluid">
+        <a class="navbar-brand"><b>Heart Failure</b></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="/home" style="color: tomato;">Home</a>
+            <a class="nav-link" href="/data" style="color: whitesmoke;">Data</a>
+            <a class="nav-link" href="/model" style="color: whitesmoke;">Model</a>
+            <a class="nav-link" href="/pred" style="color: whitesmoke;">Predict</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+        {% block content %}
+          <div class="dat-chart">
+            <div style="text-align: justify; margin: 32px 8px 0 32px;">
+              <h4 style="font-family: 'Segoe UI';"><b> Apa itu Penyakit Kardiovaskular?</b></h4>
+              <p>
+              &nbsp &nbsp &nbsp Penyakit kardiovaskular (CVDs) adalah penyebab kematian nomor 1 secara global, mengambil sekitar 17,9 juta jiwa setiap tahun, yang menyumbang 31% dari semua kematian di seluruh dunia. Gagal jantung adalah kejadian umum yang disebabkan oleh CVD dan kumpulan data ini berisi 12 fitur yang dapat digunakan untuk memprediksi kematian akibat gagal jantung.
+              </p>
+              <p>
+              &nbsp &nbsp &nbsp Sebagian besar penyakit kardiovaskular dapat dicegah dengan mengatasi faktor risiko perilaku seperti penggunaan tembakau, diet tidak sehat dan obesitas, kurangnya aktivitas fisik, dan penggunaan alkohol yang berbahaya menggunakan strategi di seluruh populasi.
+              </p>
+              <p> 
+              &nbsp &nbsp &nbsp Orang dengan penyakit kardiovaskular atau yang berada pada risiko kardiovaskular tinggi (karena adanya satu atau lebih faktor risiko seperti hipertensi, diabetes, hiperlipidemia atau penyakit yang sudah ada) memerlukan deteksi dan manajemen dini di mana model pembelajaran mesin dapat sangat membantu.
+              </p>
+            </div>
+            <div id="chart1" class="chart1" style="margin: 0 0 0 16px;"></div>
+          </div>
+        {% endblock %}
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
+</body>
+<script>
+    a = {{ graph1 | safe }};
+    Plotly.newPlot('chart1', a, {});
+
+  </script>
+</html>
