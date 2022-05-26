@@ -1,0 +1,15 @@
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+.vscode
+*/.vscode/*
+
+__pycache__
+*__pycache__*
+*pyc
+
+notebook
+*notebook*
+
+venv
+*venv*

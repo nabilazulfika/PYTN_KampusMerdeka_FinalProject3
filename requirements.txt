@@ -1,0 +1,10 @@
+flask
+numpy
+sklearn
+imblearn
+matplotlib
+seaborn
+pandas
+plotly
+plotly-express
+gunicorn
